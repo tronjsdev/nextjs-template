@@ -1,0 +1,16 @@
+{
+  "env": {
+    "development": {
+      "presets": ["next/babel"],
+      "plugins": [["emotion"], ["@babel/plugin-proposal-optional-chaining"]]
+    },
+    "production": {
+      "presets": ["next/babel"],
+      "plugins": [["emotion"], ["@babel/plugin-proposal-optional-chaining"]]
+    },
+    "test": {
+      "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }]],
+      "plugins": [["emotion"], ["@babel/plugin-proposal-optional-chaining"]]
+    }
+  }
+}
