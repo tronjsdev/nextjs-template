@@ -9,17 +9,21 @@ import path from 'path';
 import next from 'next';
 import express from 'express';
 
-import { sessionConfig, port } from './config';
+import '../config/dotenv/load-dotenv';
+
+import { sessionConfig } from './config';
 import { nextDevRouter, authRouter } from './routers';
 
+const port = process.env.PORT;
 const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
+
 nextApp.prepare().then(() => {
   let server;
   (async () => {
     const app = express();
-    app.enable('trust proxy');
+    //app.enable('trust proxy');
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
 
@@ -29,9 +33,9 @@ nextApp.prepare().then(() => {
       app.use(nextDevRouter(handle));
     }
 
-    app.use('/session', (req, res)=>{
-      res.send(req.session?.tokenData)
-    })
+    app.use('/session', (req, res) => {
+      res.send(req.session?.tokenData);
+    });
     app.use('/auth', authRouter(app));
 
     app.all('*', (req, res) => {
@@ -46,7 +50,7 @@ nextApp.prepare().then(() => {
         },
         app
       )
-      .listen(3001, () => {
+      .listen(port, () => {
         console.log(
           `> Ready on https://localhost:${port}, check its /.well-known/openid-configuration`
         );

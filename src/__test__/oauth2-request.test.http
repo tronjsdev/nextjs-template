@@ -11,7 +11,7 @@ GET https://github.com/login?client_id=c8b5328ae8bb90f48da2&return_to=%2Flogin%2
 ###
 
 POST https://127.0.0.1:3000/oauth2/me
-Authorization: Bearer b3BVqb56OlDfIFA2XoI6G9aANG0An_OOQYAsRLA17EG
+Authorization: Bearer cnn-r9jWueegrHUIOpT9SsKOABe-JWKtvcgJgZn_9iw
 
 ###
 
