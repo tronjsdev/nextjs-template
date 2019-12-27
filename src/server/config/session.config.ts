@@ -3,7 +3,7 @@ import redis from 'redis';
 import connectRedis from 'connect-redis';
 
 const RedisStore = connectRedis(session);
-const redisClient = redis.createClient();
+const redisClient = redis.createClient(process.env.REDIS_URL as any);
 
 export const sessionConfig = session({
   name: process.env.SESSION_COOKIE_NAME,
