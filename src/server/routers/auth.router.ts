@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import express, { Response, Request } from 'express';
-import fetch from 'isomorphic-unfetch';
 import {
   AuthorizationParameters,
   generators,
@@ -9,6 +8,8 @@ import {
   StrategyOptions,
 } from 'openid-client';
 import passport from 'passport';
+
+import { ensureLoggedIn } from '../middlewares';
 
 const LOGIN_URL = '/auth/login';
 
@@ -24,10 +25,10 @@ export const authRouter = app => {
   });
 
   const params: AuthorizationParameters = {
-    client_id: '0-0-0-1',
+    client_id: process.env.IDENTIX_OAUTH2_CLIENT_ID as string,
+    redirect_uri: process.env.IDENTIX_OAUTH2_CLIENT_REDIRECT_URI as string,
     response_type: 'code',
     scope: 'openid profile email',
-    redirect_uri: process.env.IDENTIX_OAUTH2_CLIENT_REDIRECT_URI as string,
     nonce: generators.nonce(),
   };
   const options = { client, params };
@@ -49,18 +50,43 @@ export const authRouter = app => {
   });
 
   passport.deserializeUser((obj, done) => {
+    console.log('passport.deserializeUser(', obj);
     done(null, obj);
   });
 
-  router.use('/login', passport.authenticate('openid-client'));
+  router.use(
+    '/login',
+    (req, res, next) => {
+      const { nextUrl } = req.query;
+      req.session.nextUrl = nextUrl;
+      next();
+    },
+    passport.authenticate('openid-client')
+  );
 
   router.use(
     '/cb',
     passport.authenticate('openid-client', { failureRedirect: '/error' }),
     (req, res) => {
-      res.redirect('/');
+      const { nextUrl } = req.session;
+      res.redirect(nextUrl || '/');
     }
   );
+  /*router.use('/cb', (req, res, next) => {
+    const optionsx = { successRedirect: '/', failureRedirect: '/login' };
+    passport.authenticate('openid-client', optionsx, (err, user, info) => {
+      if (err) {
+        console.log(`ERROR: ${err.error}: ${err.error_description}`);
+        return next(err);
+      }
+      if (!user) return res.redirect(optionsx.failureRedirect);
+      return next();
+    })(req, res, next);
+  });*/
+
+  router.use('/profile', ensureLoggedIn(), (req, res, next) => {
+    res.send(req.user);
+  });
 
   return router;
 };

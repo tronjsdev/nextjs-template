@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Router from 'next/router';
-import nextCookie from 'next-cookies';
 
 const LOGIN_URL = '/auth/login';
 
@@ -9,24 +8,25 @@ export const auth = ctx => {
   const { req } = ctx;
   const props: any = {};
   if (req) {
-    const { session } = req;
-    props.isAuthenticated = session?.isAuthenticated;
+    const { user, locals } = req;
+    props.isAuthenticated = !!user;
+    props.serverData = locals?.serverData;
+    debugger;
   } else {
-    const {__NEXT_DATA__:{props:winProps}}:any =window;
     const {
-      serverData,
-      isAuthenticated,
-      userinfo,
-    } = winProps;
-    props.isAuthenticated  = isAuthenticated;
+      __NEXT_DATA__: { props: winProps },
+    }: any = window;
+    debugger;
+    const { serverData, isAuthenticated, userInfo } = winProps;
+    props.isAuthenticated = isAuthenticated;
     props.serverData = serverData;
-    props.userinfo = userinfo;
+    props.userInfo = userInfo;
   }
 
   // If there's no token, it means the user is not logged in.
   if (!props.isAuthenticated) {
     const nextUrl = ctx.pathname;
-    const loginUrl = nextUrl?`${LOGIN_URL}?nextUrl=${nextUrl}`:LOGIN_URL;
+    const loginUrl = nextUrl ? `${LOGIN_URL}?nextUrl=${nextUrl}` : LOGIN_URL;
     if (typeof window === 'undefined') {
       debugger;
       ctx.res.writeHead(302, { Location: loginUrl });
@@ -37,7 +37,7 @@ export const auth = ctx => {
     }
   }
 
-  return props ;
+  return props;
 };
 
 export const logout = () => {
@@ -71,8 +71,7 @@ export const withAuthSync = WrappedComponent => {
     const props = auth(ctx);
 
     const componentProps =
-      WrappedComponent.getInitialProps &&
-      (await WrappedComponent.getInitialProps(ctx));
+      WrappedComponent.getInitialProps && (await WrappedComponent.getInitialProps(ctx));
     return { ...componentProps };
   };
 

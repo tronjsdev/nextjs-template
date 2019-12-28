@@ -5,7 +5,7 @@ import { Box, Flex, Link, Text } from '@components';
 const MenuItem = ({ href, children }) => {
   return (
     <NextLink href={href} passHref>
-      <Link display={'block'}>{children}</Link>
+      <Link display={'block'} m={'0.4rem 0'}>{children}</Link>
     </NextLink>
   );
 };
@@ -30,6 +30,7 @@ const LeftSidebar = () => {
         <Box as={'ul'} pl={3}>
           <MenuItem href={'/auth/login'}>Login</MenuItem>
           <MenuItem href={'/account/profile'}>Profile</MenuItem>
+          <MenuItem href={'/public'}>Public Page</MenuItem>
         </Box>
       </Box>
     </Box>

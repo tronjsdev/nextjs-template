@@ -18,7 +18,4 @@ IndexPage.getInitialProps = async ({ req }) => {
   return {};
 };
 
-IndexPage.title = 'Home';
-IndexPage.isAnonymous = true;
-
 export default IndexPage;

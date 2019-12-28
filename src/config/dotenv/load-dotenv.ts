@@ -1,11 +1,10 @@
 /* eslint-disable */
 
-
 // @ts-ignore
 const path = require('path');
 
-const dotenv = require( 'dotenv');
-const dotenvExpand = require( 'dotenv-expand');
+const dotenv = require('dotenv');
+const dotenvExpand = require('dotenv-expand');
 
 const env = process.env.NODE_ENV;
 

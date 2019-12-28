@@ -21,11 +21,9 @@ module.exports = {
   serverRuntimeConfig: {
     // Will only be available on the server side
     MY_SERVER_VAR: 'You only see me on server',
-    PORT: process.env.PORT,
   },
   publicRuntimeConfig: {
     // Will be available on both server and client
     MY_PUBLIC_VAR: 'You can see me either on server or client',
-    PORT: process.env.PORT,
   },
 };

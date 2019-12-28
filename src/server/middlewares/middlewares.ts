@@ -1,4 +1,5 @@
-export const ensureLoggedIn = loginUrl => {
+const LOGIN_URL = '/auth/login';
+export const ensureLoggedIn = (loginUrl = LOGIN_URL) => {
   return (req, res, next) => {
     if (req.isAuthenticated()) {
       return next();
@@ -7,7 +8,6 @@ export const ensureLoggedIn = loginUrl => {
     return res.redirect(`${loginUrl}?nextUrl=${nextUrl}`);
   };
 };
-
 
 /*var url = require('url');
 

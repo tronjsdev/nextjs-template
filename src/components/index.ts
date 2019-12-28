@@ -1,7 +1,7 @@
 export * from 'rebass';
 export { CSSReset } from './css-reset';
 export { Button } from './button';
-export { Link } from './link';
+//export { Link } from './link';
 
 /* export {
   // @ts-ignore

@@ -10,13 +10,10 @@ type Props = {
   // isAnonymous: boolean;
 };
 
-const DefaultLayout: React.FunctionComponent<Props> = ({
-  children,
-  title = '!! Please change page title !!',
-}) => (
+const DefaultLayout: React.FunctionComponent<Props> = ({ children, title }) => (
   <>
     <Head>
-      <title>{title}</title>
+      {title && <title>{title}</title>}
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 

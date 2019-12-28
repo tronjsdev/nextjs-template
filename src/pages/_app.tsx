@@ -1,8 +1,8 @@
 import App from 'next/app';
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
+import { theme } from '@utils';
 
-import { theme } from '../utils';
 import { DefaultLayout } from '../layouts';
 
 export default class MyApp extends App {
@@ -20,21 +20,19 @@ export default class MyApp extends App {
     }
 
     if (req) {
-      const {
-        serverData,
-        session: { isAuthenticated, userinfo },
-      } = req;
-      pageProps.serverData = serverData;
-      pageProps.isAuthenticated = isAuthenticated;
-      pageProps.userinfo = userinfo;
+      const { locals, user } = req;
+      const { userInfo } = user || {};
+      pageProps.serverData = locals?.serverData;
+      pageProps.isAuthenticated = req.isAuthenticated();
+      pageProps.userInfo = userInfo;
     } else {
       const {
         __NEXT_DATA__: { props },
       }: any = window || {};
-      const { serverData, isAuthenticated, userinfo } = props;
+      const { serverData, isAuthenticated, userInfo } = props;
       pageProps.serverData = serverData;
       pageProps.isAuthenticated = isAuthenticated;
-      pageProps.userinfo = userinfo;
+      pageProps.userInfo = userInfo;
     }
 
     return { ...pageProps };

@@ -25,9 +25,9 @@
     //"rootDirs": ["src"],
     "paths": {
       //"rebass/styled-components": ["node_modules/@types/rebass"],
-      "@src/*": ["src/*"],
       "@components": ["src/components"],
-      "@utils": ["src/utils"]
+      "@utils": ["src/utils"],
+      "@src/*": ["src/*"]
     }
   },
   "exclude": ["dist", ".next", "out", "next.config.js"],
