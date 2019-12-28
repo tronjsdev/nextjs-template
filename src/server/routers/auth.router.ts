@@ -51,6 +51,7 @@ export const authRouter = app => {
 
   passport.deserializeUser((obj, done) => {
     console.log('passport.deserializeUser(', obj);
+    //If need to get more info of use, can query them from db here?
     done(null, obj);
   });
 
@@ -69,6 +70,7 @@ export const authRouter = app => {
     passport.authenticate('openid-client', { failureRedirect: '/error' }),
     (req, res) => {
       const { nextUrl } = req.session;
+      req.session.nextUrl = null;
       res.redirect(nextUrl || '/');
     }
   );

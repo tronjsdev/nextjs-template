@@ -12,9 +12,14 @@ redisClient.on('error', e => {
 export const sessionConfig = session({
   name: process.env.SESSION_COOKIE_NAME,
   secret: 'keyboard cat',
-  resave: false, // Forces the session to be saved back to the session store, even if the session was never modified during the request. Should set to false if using a store
+  // Forces the session to be saved back to the session store,
+  // even if the session was never modified during the request.
+  // Should set to false if using a store
+  resave: false,
   saveUninitialized: false,
-  rolling: true, // Force the session identifier cookie to be set on every response, this can no need to use if using redis store with ttl option
+  // Force the session identifier cookie to be set on every response,
+  // this can no need to use if using redis store with ttl option
+  rolling: true,
   cookie: {
     secure: false,
     httpOnly: true,

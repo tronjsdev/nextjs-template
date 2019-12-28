@@ -7,13 +7,14 @@
     "debug": "cross-env TS_NODE_PROJECT=./tsconfig.server.json NODE_ENV=development nodemon --config nodemon-debug.json",
     "build": "next build && tsc --project tsconfig.server.json",
     "prebuild": "npm run clean",
-    "start": "cross-env NODE_ENV=production node dist/app.js",
+    "start": "cross-env NODE_ENV=production node dist/bin/www.js",
     "clean": "rm -rf dist && rm -rf .next"
   },
   "dependencies": {
     "@emotion/core": "^10.0.22",
     "@zeit/next-css": "^1.0.1",
     "connect-redis": "^4.0.3",
+    "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "dotenv-expand": "^5.1.0",
     "emotion-theming": "^10.0.19",
