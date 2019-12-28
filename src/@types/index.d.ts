@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 
 declare module 'next' {
   import { ReactNode } from 'react';
+
   type AppPage<P = {}, IP = P> = NextPage<P, IP> & {
     title?: string;
     Layout?: ReactNode;
