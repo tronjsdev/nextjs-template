@@ -6,7 +6,7 @@ export default props => {
   return (
     <div>
       <div>Public page</div>
-      <span>{userInfo.email}</span>
+      <span>{userInfo?.email}</span>
     </div>
   );
 };

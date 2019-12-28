@@ -11,9 +11,9 @@ import path from 'path';
 import next from 'next';
 import express from 'express';
 import passport from 'passport';
+import { Issuer } from 'openid-client';
 
 import '../config/dotenv/load-dotenv';
-import { Issuer } from 'openid-client';
 
 import { sessionConfig } from './config';
 import { nextDevRouter, authRouter } from './routers';
@@ -78,4 +78,8 @@ nextApp.prepare().then(() => {
     console.error(err);
     process.exitCode = 1;
   });
+});
+
+process.on('uncaughtException', err => {
+  console.error(err);
 });

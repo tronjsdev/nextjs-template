@@ -5,6 +5,10 @@ import connectRedis from 'connect-redis';
 const RedisStore = connectRedis(session);
 const redisClient = redis.createClient(process.env.REDIS_URL as any);
 
+redisClient.on('error', e => {
+  console.error('redis connection error', e);
+});
+
 export const sessionConfig = session({
   name: process.env.SESSION_COOKIE_NAME,
   secret: 'keyboard cat',
