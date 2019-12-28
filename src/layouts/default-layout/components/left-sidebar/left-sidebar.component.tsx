@@ -29,6 +29,7 @@ const LeftSidebar = () => {
         <Text>Menu</Text>
         <Box as={'ul'} pl={3}>
           <MenuItem href={'/auth/login'}>Login</MenuItem>
+          <MenuItem href={'/account/profile'}>Profile</MenuItem>
         </Box>
       </Box>
     </Box>
