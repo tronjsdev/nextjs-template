@@ -3,16 +3,16 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference,spaced-comment
 /// <reference path="../@types/global.d.ts" />
 
-import next from 'next';
+import nextjsApp from 'next';
 import express from 'express';
-import passport from 'passport';
 import { Issuer } from 'openid-client';
 
 import { sessionConfig } from './config';
-import { nextDevRouter, authRouter } from './routers';
+import { nextDevRouter, authRouter, accountRouter } from './routers';
+import { passportMiddleware } from './middlewares';
 
 const dev = process.env.NODE_ENV !== 'production';
-const nextApp = next({ dev });
+const nextApp = nextjsApp({ dev });
 const handle = nextApp.getRequestHandler();
 
 const appPromise = async () => {
@@ -30,10 +30,22 @@ const appPromise = async () => {
   }
 
   app.use(sessionConfig);
-  app.use(passport.initialize());
-  app.use(passport.session());
+  app.use(passportMiddleware(app));
+  
+  
+  app.use((req, res, next) => {
+    res.locals.userContext = req.user || null;
+    res.locals.currentPath = req.path;
+    res.locals.loginErrorMsg = req.session.loginErrorMsg;
+    res.locals.isAuthenticated = req.isAuthenticated();
+    
+    delete req.session.message;
+    
+    next();
+  });
 
   app.use('/auth', authRouter(app));
+  app.use('/account', accountRouter);
 
   app.all('*', (req, res) => {
     return handle(req, res);

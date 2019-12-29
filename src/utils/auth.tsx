@@ -5,12 +5,13 @@ const LOGIN_URL = '/auth/login';
 
 export const auth = ctx => {
   // const { token } = nextCookie(ctx);
-  const { req } = ctx;
+  const { req, res } = ctx;
   const props: any = {};
   if (req) {
-    const { user, locals } = req;
-    props.isAuthenticated = !!user;
-    props.serverData = locals?.serverData;
+    const { userContext, isAuthenticated, serverData } = res.locals;
+    props.isAuthenticated = isAuthenticated;
+    props.serverData = serverData;
+    props.userInfo = userContext?.userInfo;
     debugger;
   } else {
     const {

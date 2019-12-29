@@ -17,17 +17,17 @@ export const sessionConfig = session({
   // Should set to false if using a store
   resave: false,
   saveUninitialized: false,
-  // Force the session identifier cookie to be set on every response,
+  // If true, force the session identifier cookie to be set on every response,
   // this can no need to use if using redis store with ttl option
   rolling: true,
-  cookie: {
+  /*cookie: {
     secure: false,
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000,
-  },
+  },*/
   store: new RedisStore({
     client: redisClient,
     // Session expires will be reset on every users interact with the server. The session will be lost when browser get closed
-    // ttl: 24 * 60 * 60, // 1 day (ttl means Time To Live, in second)
+    //ttl: 24 * 60 * 60, // 1 day (ttl means Time To Live, in second)
   }),
 });

@@ -11,7 +11,7 @@ export default class MyApp extends App {
   // perform automatic static optimization, causing every page in your app to
   // be server-side rendered.
   static async getInitialProps({ Component, ctx }) {
-    const { req } = ctx;
+    const { req, res } = ctx;
 
     let pageProps: any = {};
 
@@ -20,11 +20,11 @@ export default class MyApp extends App {
     }
 
     if (req) {
-      const { locals, user } = req;
-      const { userInfo } = user || {};
-      pageProps.serverData = locals?.serverData;
-      pageProps.isAuthenticated = req.isAuthenticated();
-      pageProps.userInfo = userInfo;
+      const { userContext, serverData, isAuthenticated } = res.locals || {};
+      
+      pageProps.serverData = serverData;
+      pageProps.isAuthenticated = isAuthenticated;
+      pageProps.userInfo = userContext?.userInfo;
     } else {
       const {
         __NEXT_DATA__: { props },

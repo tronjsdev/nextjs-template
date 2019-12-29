@@ -13,12 +13,12 @@ declare module 'react' {
     title?: string;
   }*/
 }
-declare module 'express' {
+/*declare module 'express' {
   interface Request {
     body?: any;
     session?: any;
     user?: any;
   }
-}
+}*/
 
 declare global {}

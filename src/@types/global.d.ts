@@ -20,7 +20,6 @@ declare namespace Express {
   interface Request {
     body?: any;
     session?: any;
-    isAuthenticated?: boolean;
     user?: any;
   }
 }
