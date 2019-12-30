@@ -7,10 +7,12 @@ import { Header } from './components/header';
 
 type Props = {
   title?: string;
+  userInfo?: any;
+  isAuthenticated: boolean;
   // isAnonymous: boolean;
 };
 
-const DefaultLayout: React.FunctionComponent<Props> = ({ children, title }) => (
+const DefaultLayout: React.FunctionComponent<Props> = ({ children, title, userInfo, isAuthenticated }) => (
   <>
     <Head>
       {title && <title>{title}</title>}
@@ -25,7 +27,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({ children, title }) => (
     </Head>
     <CSSReset />
     <Flex height={'100vh'}>
-      <LeftSidebar />
+      <LeftSidebar userInfo={userInfo} isAuthenticated={isAuthenticated} />
       <Box p={3}>
         <Header />
         <div className="p-4">

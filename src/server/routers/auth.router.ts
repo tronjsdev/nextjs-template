@@ -24,7 +24,7 @@ export const authRouter = app => {
     (req, res) => {
       const { nextUrl } = req.session;
       delete req.session.nextUrl;
-      res.redirect(nextUrl || '/');
+      res.redirect(nextUrl || '/account/profile');
     }
   );
   /*router.use('/cb', (req, res, next) => {
@@ -38,7 +38,6 @@ export const authRouter = app => {
       return next();
     })(req, res, next);
   });*/
-  
 
   return router;
 };

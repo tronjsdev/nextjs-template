@@ -21,7 +21,7 @@ export default class MyApp extends App {
 
     if (req) {
       const { userContext, serverData, isAuthenticated } = res.locals || {};
-      
+
       pageProps.serverData = serverData;
       pageProps.isAuthenticated = isAuthenticated;
       pageProps.userInfo = userContext?.userInfo;
@@ -51,7 +51,11 @@ export default class MyApp extends App {
     const { title } = Component;
     return (
       <ThemeProvider theme={theme}>
-        <Layout title={title}>
+        <Layout
+          title={title}
+          isAuthenticated={pageProps.isAuthenticated}
+          userInfo={pageProps.userInfo}
+        >
           <Component {...pageProps} />
         </Layout>
       </ThemeProvider>

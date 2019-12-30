@@ -5,35 +5,33 @@ const LOGIN_URL = '/auth/login';
 
 export const auth = ctx => {
   // const { token } = nextCookie(ctx);
-  const { req, res } = ctx;
+  const { req, res, asPath } = ctx;
   const props: any = {};
   if (req) {
     const { userContext, isAuthenticated, serverData } = res.locals;
     props.isAuthenticated = isAuthenticated;
     props.serverData = serverData;
     props.userInfo = userContext?.userInfo;
-    debugger;
   } else {
     const {
       __NEXT_DATA__: { props: winProps },
     }: any = window;
-    debugger;
     const { serverData, isAuthenticated, userInfo } = winProps;
     props.isAuthenticated = isAuthenticated;
     props.serverData = serverData;
     props.userInfo = userInfo;
   }
 
+  const nextUrl = encodeURIComponent(asPath);
+  const loginUrl = nextUrl ? `${LOGIN_URL}?nextUrl=${nextUrl}` : LOGIN_URL;
+
   // If there's no token, it means the user is not logged in.
   if (!props.isAuthenticated) {
-    const nextUrl = ctx.pathname;
-    const loginUrl = nextUrl ? `${LOGIN_URL}?nextUrl=${nextUrl}` : LOGIN_URL;
     if (typeof window === 'undefined') {
-      debugger;
       ctx.res.writeHead(302, { Location: loginUrl });
       ctx.res.end();
     } else {
-      console.log('auth redirects to /login/google');
+      console.log('auth redirects to window.location.href');
       Router.push(loginUrl);
     }
   }

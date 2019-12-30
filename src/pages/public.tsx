@@ -5,7 +5,7 @@ export default props => {
   const { userInfo } = props;
   return (
     <div>
-      <div>Public page</div>
+      <h3>Public page</h3>
       <span>{userInfo?.email}</span>
     </div>
   );

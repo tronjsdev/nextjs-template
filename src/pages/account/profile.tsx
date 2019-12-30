@@ -4,7 +4,12 @@ import { withAuthSync } from '@utils';
 
 const ProfilePage: AppPage = (props: any) => {
   const { userInfo } = props;
-  return <div>{userInfo.email}</div>;
+  return (
+    <div>
+      <h3>Profile</h3>
+      <pre>{JSON.stringify(userInfo)}</pre>
+    </div>
+  );
 };
 
 ProfilePage.getInitialProps = async ({ req, res, query }) => {
