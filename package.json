@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-oauth-server",
+  "name": "nextjs-template",
   "version": "1.0.0",
   "module": "index.ts",
   "scripts": {
