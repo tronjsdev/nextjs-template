@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { CSSReset, Box, Flex } from '@components';
+import { CSSReset } from '@components';
 
 import { LeftSidebar } from './components/left-sidebar';
 import { Header } from './components/header';
@@ -12,7 +12,12 @@ type Props = {
   // isAnonymous: boolean;
 };
 
-const DefaultLayout: React.FunctionComponent<Props> = ({ children, title, userInfo, isAuthenticated }) => (
+const DefaultLayout: React.FunctionComponent<Props> = ({
+  children,
+  title,
+  userInfo,
+  isAuthenticated,
+}) => (
   <>
     <Head>
       {title && <title>{title}</title>}
@@ -26,17 +31,17 @@ const DefaultLayout: React.FunctionComponent<Props> = ({ children, title, userIn
       />
     </Head>
     <CSSReset />
-    <Flex height={'100vh'}>
+    <div style={{height: '100vh'}}>
       <LeftSidebar userInfo={userInfo} isAuthenticated={isAuthenticated} />
-      <Box p={3}>
+      <div>
         <Header />
         <div className="p-4">
           <h3 className="text-gray-600 text-xs uppercase">{title}</h3>
         </div>
         <div className="p-4">{children}</div>
         {/* <Footer /> */}
-      </Box>
-    </Flex>
+      </div>
+    </div>
   </>
 );
 

@@ -11,7 +11,7 @@ declare namespace NodeJS {
 
 declare namespace JSX {
   interface IntrinsicAttributes {
-    css?: InterpolationWithTheme<any>; // <- here
+    //css?: InterpolationWithTheme<any>; // <- here
     borderRadius?: number | string;
   }
 }

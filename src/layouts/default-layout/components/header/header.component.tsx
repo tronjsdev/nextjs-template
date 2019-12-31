@@ -1,22 +1,23 @@
 import React from 'react';
 import NextLink from 'next/link';
-import { Link } from '@components';
+import styled from '@emotion/styled';
 
-import { Wrapper } from './header.styled';
+const Wrapper = styled.div`
+  display: flex;
+`;
 
 const Header = () => (
   <Wrapper>
     <NextLink href="/" passHref>
-      <Link
-        sx={{
+      <a
+        css={{
           textDecoration: 'none',
           textTransform: 'uppercase',
           letterSpacing: '2px',
         }}
-        fontSize={3}
       >
         Next JS Template
-      </Link>
+      </a>
     </NextLink>
   </Wrapper>
 );

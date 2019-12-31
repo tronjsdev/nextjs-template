@@ -1,15 +1,15 @@
 {
   "env": {
     "development": {
-      "presets": ["next/babel"],
+      "presets": ["next/babel", "@emotion/babel-preset-css-prop"],
       "plugins": [["emotion"], ["@babel/plugin-proposal-optional-chaining"]]
     },
     "production": {
-      "presets": ["next/babel"],
+      "presets": ["next/babel", "@emotion/babel-preset-css-prop"],
       "plugins": [["emotion"], ["@babel/plugin-proposal-optional-chaining"]]
     },
     "test": {
-      "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }]],
+      "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }], ["@emotion/babel-preset-css-prop"]],
       "plugins": [["emotion"], ["@babel/plugin-proposal-optional-chaining"]]
     }
   }
