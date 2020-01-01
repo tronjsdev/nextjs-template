@@ -1,4 +1,6 @@
-export const theme = {
+import {Theme} from './styled'
+
+export const theme:Theme = {
   colors: {
     text: '#000',
     background: '#fff',

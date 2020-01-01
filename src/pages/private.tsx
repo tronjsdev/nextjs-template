@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppPage } from 'next';
-import { withAuthSync } from '@utils';
+import { withAuthSync } from '@libs';
 
 const PrivatePage: AppPage = (props: any) => {
   const { userInfo,param1, param2 } = props;

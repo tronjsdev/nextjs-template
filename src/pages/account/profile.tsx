@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppPage } from 'next';
-import { withAuthSync } from '@utils';
+import { withAuthSync } from '@libs';
 
 const ProfilePage: AppPage = (props: any) => {
   const { userInfo } = props;

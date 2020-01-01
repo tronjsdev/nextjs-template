@@ -1,7 +1,7 @@
 import App from 'next/app';
 import React from 'react';
 import { ThemeProvider } from 'emotion-theming';
-import { theme } from '@utils';
+import { theme } from '@libs';
 
 import { DefaultLayout } from '../layouts';
 
