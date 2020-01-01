@@ -11,15 +11,22 @@ declare namespace NodeJS {
 
 declare namespace JSX {
   interface IntrinsicAttributes {
-    //css?: InterpolationWithTheme<any>; // <- here
-    borderRadius?: number | string;
+    css?: InterpolationWithTheme<any>;
   }
 }
+
 
 declare namespace Express {
   interface Request {
     body?: any;
     session?: any;
     user?: any;
+  }
+}
+
+declare namespace Emotion {
+  export interface Theme {
+    red: string,
+    black: string,
   }
 }

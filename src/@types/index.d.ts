@@ -9,16 +9,10 @@ declare module 'next' {
 }
 
 declare module 'react' {
-  /*interface FunctionComponent {
-    title?: string;
-  }*/
-}
-/*declare module 'express' {
-  interface Request {
-    body?: any;
-    session?: any;
-    user?: any;
+  interface DOMAttributes<T> {
+    css?: InterpolationWithTheme<any>
   }
-}*/
+}
+
 
 declare global {}

@@ -7,7 +7,7 @@
     "debug": "cross-env TS_NODE_PROJECT=./tsconfig.server.json NODE_ENV=development nodemon --config nodemon-debug.json",
     "build": "next build && tsc --project tsconfig.server.json",
     "prebuild": "npm run clean",
-    "start": "cross-env NODE_ENV=production node dist/bin/www.js",
+    "start": "cross-env NODE_ENV=production node dist/server/bin/www.js",
     "clean": "rm -rf dist && rm -rf .next"
   },
   "dependencies": {
@@ -18,7 +18,7 @@
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "dotenv-expand": "^5.1.0",
-    "emotion-theming": "^10.0.19",
+    "emotion-theming": "^10.0.27",
     "express": "^5.0.0-alpha.7",
     "express-session": "^1.17.0",
     "isomorphic-unfetch": "^3.0.0",
