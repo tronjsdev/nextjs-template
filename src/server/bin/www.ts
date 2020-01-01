@@ -7,7 +7,7 @@ import path from 'path';
 
 import debug0 from 'debug';
 
-import '../../config/dotenv/load-dotenv';
+import '../config/dotenv/load-dotenv';
 
 import { appPromise } from '../app';
 

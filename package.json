@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "module": "index.ts",
   "scripts": {
+    "//---dev---": "----------------------------------",
     "dev": "cross-env NODE_ENV=development nodemon",
     "debug": "cross-env TS_NODE_PROJECT=./tsconfig.server.json NODE_ENV=development nodemon --config nodemon-debug.json",
-    "build": "next build && tsc --project tsconfig.server.json",
+    "//---build---": "----------------------------------",
     "prebuild": "npm run clean",
-    "start": "cross-env NODE_ENV=production node dist/server/bin/www.js",
-    "clean": "rm -rf dist && rm -rf .next"
+    "build": "next build && tsc --project tsconfig.server.json",
+    "postbuild": "npm run copy",
+    "copy": "node ./scripts/build.js",
+    "clean": "rm -rf dist && rm -rf .next",
+    "//---prod---": "----------------------------------",
+    "start": "cross-env NODE_ENV=production node dist/bin/www.js"
   },
   "dependencies": {
     "@emotion/core": "^10.0.27",
@@ -51,6 +56,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "fs-extra": "^8.1.0",
     "nodemon": "^2.0.1",
     "ts-node": "^8.5.4",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
