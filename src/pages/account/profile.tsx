@@ -3,7 +3,9 @@ import { AppPage } from 'next';
 import { withAuthSync } from '@libs';
 
 const ProfilePage: AppPage = (props: any) => {
-  const { userInfo } = props;
+  const {
+    initProps: { userInfo },
+  } = props;
   return (
     <div>
       <h3>Profile</h3>

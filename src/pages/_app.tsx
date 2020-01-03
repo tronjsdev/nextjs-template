@@ -11,9 +11,10 @@ export default class MyApp extends App {
   // perform automatic static optimization, causing every page in your app to
   // be server-side rendered.
   static async getInitialProps({ Component, ctx }) {
-    const { req, res } = ctx;
+    const { req, res, query } = ctx;
 
     let pageProps: any = {};
+    const initProps: any = {};
 
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
@@ -22,18 +23,21 @@ export default class MyApp extends App {
     if (req) {
       const { userContext, serverData, isAuthenticated } = res.locals || {};
 
-      pageProps.serverData = serverData;
-      pageProps.isAuthenticated = isAuthenticated;
-      pageProps.userInfo = userContext?.userInfo;
+      initProps.serverData = serverData;
+      initProps.isAuthenticated = isAuthenticated;
+      initProps.userInfo = userContext?.userInfo;
     } else {
       const {
         __NEXT_DATA__: { props },
       }: any = window || {};
       const { serverData, isAuthenticated, userInfo } = props;
-      pageProps.serverData = serverData;
-      pageProps.isAuthenticated = isAuthenticated;
-      pageProps.userInfo = userInfo;
+      initProps.serverData = serverData;
+      initProps.isAuthenticated = isAuthenticated;
+      initProps.userInfo = userInfo;
     }
+
+    pageProps.initProps = initProps;
+    pageProps.query = query;
 
     return { ...pageProps };
   }
@@ -46,15 +50,15 @@ export default class MyApp extends App {
 
   render() {
     const { Component, ...pageProps }: any = this.props;
-
+    const {initProps} = pageProps;
     const Layout = Component.Layout || DefaultLayout;
     const { title } = Component;
     return (
       <ThemeProvider theme={theme}>
         <Layout
           title={title}
-          isAuthenticated={pageProps.isAuthenticated}
-          userInfo={pageProps.userInfo}
+          isAuthenticated={initProps.isAuthenticated}
+          userInfo={initProps.userInfo}
         >
           <Component {...pageProps} />
         </Layout>
