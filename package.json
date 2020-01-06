@@ -8,7 +8,7 @@
     "debug": "cross-env TS_NODE_PROJECT=./tsconfig.server.json NODE_ENV=development nodemon --config nodemon-debug.json",
     "//---build---": "----------------------------------",
     "prebuild": "npm run clean",
-    "build": "next build && tsc --project tsconfig.server.json",
+    "build": "cross-env NODE_ENV=production next build && tsc --project tsconfig.server.json",
     "postbuild": "npm run copy",
     "copy": "node ./scripts/build.js",
     "clean": "rm -rf dist && rm -rf .next",

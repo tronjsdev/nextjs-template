@@ -3,6 +3,7 @@ import { AppPage } from 'next';
 import { withAuthSync } from '@libs';
 
 const ProfilePage: AppPage = (props: any) => {
+  console.log('Profile page props', props);
   const {
     initProps: { userInfo },
   } = props;
@@ -15,7 +16,7 @@ const ProfilePage: AppPage = (props: any) => {
 };
 
 ProfilePage.getInitialProps = async ({ req, res, query }) => {
-  return {};
+  return { profilePage1: 'hello', profilePage2: 2 };
 };
 
 export default withAuthSync(ProfilePage);

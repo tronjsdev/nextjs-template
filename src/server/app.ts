@@ -7,9 +7,9 @@ import nextjsApp from 'next';
 import express from 'express';
 import { Issuer } from 'openid-client';
 
+import { passportMiddleware } from './libs';
 import { sessionConfig } from './config';
 import { nextDevRouter, authRouter, accountRouter } from './routers';
-import { passportMiddleware } from './middlewares';
 
 const dev = process.env.NODE_ENV !== 'production';
 const nextApp = nextjsApp({ dev });
@@ -31,16 +31,15 @@ const appPromise = async () => {
 
   app.use(sessionConfig);
   app.use(passportMiddleware(app));
-  
-  
+
   app.use((req, res, next) => {
     res.locals.userContext = req.user || null;
     res.locals.currentPath = req.path;
     res.locals.loginErrorMsg = req.session.loginErrorMsg;
     res.locals.isAuthenticated = req.isAuthenticated();
-    
+
     delete req.session.message;
-    
+
     next();
   });
 

@@ -10,7 +10,7 @@ export default class MyApp extends App {
   // every single page in your application. This disables the ability to
   // perform automatic static optimization, causing every page in your app to
   // be server-side rendered.
-  static async getInitialProps({ Component, ctx }) {
+  /*static async getInitialProps({ Component, ctx }) {
     const { req, res, query } = ctx;
 
     let pageProps: any = {};
@@ -40,7 +40,7 @@ export default class MyApp extends App {
     pageProps.query = query;
 
     return { ...pageProps };
-  }
+  }*/
 
   componentDidCatch(error, errorInfo) {
     console.error('CUSTOM ERROR HANDLING', error);
@@ -49,19 +49,20 @@ export default class MyApp extends App {
   }
 
   render() {
-    const { Component, ...pageProps }: any = this.props;
+    const { Component, pageProps, ...rest }: any = this.props;
     const {initProps} = pageProps;
     const Layout = Component.Layout || DefaultLayout;
     const { title } = Component;
     return (
       <ThemeProvider theme={theme}>
-        <Layout
+        {/*<Layout
           title={title}
           isAuthenticated={initProps.isAuthenticated}
           userInfo={initProps.userInfo}
         >
           <Component {...pageProps} />
-        </Layout>
+        </Layout>*/}
+        <Component {...pageProps} />
       </ThemeProvider>
     );
   }

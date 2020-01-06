@@ -28,6 +28,7 @@ const LeftSidebar = ({ userInfo, isAuthenticated, ...props }) => {
             </>
           )}
           <MenuItem href={'/public'}>Public Page</MenuItem>
+          <MenuItem href={'/static-optimization'}>automatic-static-optimization</MenuItem>
           <MenuItem href={'/private?param1=1&param2=2'}>Demo `nextUrl`</MenuItem>
         </ul>
       </div>
