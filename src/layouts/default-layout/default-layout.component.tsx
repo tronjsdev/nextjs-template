@@ -7,16 +7,12 @@ import { Header } from './components/header';
 
 type Props = {
   title?: string;
-  userInfo?: any;
-  isAuthenticated: boolean;
   // isAnonymous: boolean;
 };
 
 const DefaultLayout: React.FunctionComponent<Props> = ({
   children,
   title,
-  userInfo,
-  isAuthenticated,
 }) => (
   <>
     <Head>
@@ -35,7 +31,7 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
     </Head>
     <CSSReset />
     <div style={{ height: '100vh' }}>
-      <LeftSidebar userInfo={userInfo} isAuthenticated={isAuthenticated} />
+      <LeftSidebar />
       <div>
         <Header />
         <div className="p-4">

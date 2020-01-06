@@ -25,6 +25,7 @@
     //"rootDirs": ["src"],
     "paths": {
       "@components": ["src/components"],
+      "@layouts": ["src/layouts"],
       "@libs": ["src/libs"],
       "@src/*": ["src/*"]
     }

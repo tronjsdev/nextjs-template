@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppPage } from 'next';
 import { withAuthSync } from '@libs';
+import { DefaultLayout } from '@layouts';
 
 const PrivatePage: AppPage = (props: any) => {
   const {
@@ -8,11 +9,11 @@ const PrivatePage: AppPage = (props: any) => {
     query: { param1, param2 },
   } = props;
   return (
-    <div>
+    <DefaultLayout>
       <h3>Private</h3>
       <pre>{JSON.stringify(userInfo)}</pre>
       <pre>{JSON.stringify({ param1, param2 })}</pre>
-    </div>
+    </DefaultLayout>
   );
 };
 
