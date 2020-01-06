@@ -1,4 +1,5 @@
 import React from 'react';
+import { DefaultLayout } from '@layouts';
 
 // Called at build time and renders the page to static HTML.
 export async function getStaticProps() {
@@ -14,8 +15,8 @@ export async function getStaticProps() {
 
 const AutomaticStaticOptimizationPage = ({ stars }) => {
   return (
-    <div>
-      <h3>Automatic Static Optimization</h3>
+    <DefaultLayout>
+      <h3 css={{ color: 'red' }}>Automatic Static Optimization</h3>
       <p>This page should be generated as html static page</p>
       <div>
         Caveats: <br />
@@ -34,7 +35,9 @@ const AutomaticStaticOptimizationPage = ({ stars }) => {
       </div>
       <div>
         <h4>`getStaticProps` demo</h4>
-        <code style={{border: '1px solid #ccc', padding: '1rem', margin: '1rem 0', display: 'block'}}>
+        <code
+          style={{ border: '1px solid #ccc', padding: '1rem', margin: '1rem 0', display: 'block' }}
+        >
           //TODO: comeback here to check new `getStaticProps` NextJs API
           {stars}
         </code>
@@ -51,7 +54,7 @@ const AutomaticStaticOptimizationPage = ({ stars }) => {
           https://www.gitmemory.com/issue/zeit/next.js/9524/558628066
         </a>
       </p>
-    </div>
+    </DefaultLayout>
   );
 };
 

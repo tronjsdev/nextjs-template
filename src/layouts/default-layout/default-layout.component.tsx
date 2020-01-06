@@ -1,6 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { CSSReset } from '@components';
+import { styled } from '@libs';
 
 import { LeftSidebar } from './components/left-sidebar';
 import { Header } from './components/header';
@@ -10,10 +11,17 @@ type Props = {
   // isAnonymous: boolean;
 };
 
-const DefaultLayout: React.FunctionComponent<Props> = ({
-  children,
-  title,
-}) => (
+const Root = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 250px auto;
+`;
+
+const MainContainer = styled.div`
+  padding: 1rem;
+`;
+
+const DefaultLayout: React.FunctionComponent<Props> = ({ children, title }) => (
   <>
     <Head>
       {title && <title>{title}</title>}
@@ -30,17 +38,17 @@ const DefaultLayout: React.FunctionComponent<Props> = ({
       />
     </Head>
     <CSSReset />
-    <div style={{ height: '100vh' }}>
+    <Root>
       <LeftSidebar />
-      <div>
+      <MainContainer>
         <Header />
         <div className="p-4">
           <h3 className="text-gray-600 text-xs uppercase">{title}</h3>
         </div>
         <div className="p-4">{children}</div>
         {/* <Footer /> */}
-      </div>
-    </div>
+      </MainContainer>
+    </Root>
   </>
 );
 

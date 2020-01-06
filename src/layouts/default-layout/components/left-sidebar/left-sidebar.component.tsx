@@ -14,7 +14,7 @@ const MenuItem = ({ href, children }) => {
 
 const LeftSidebar = props => {
   return (
-    <div>
+    <div css={{ padding: '1rem' }}>
       <div>
         <div>Menu</div>
         <ul>

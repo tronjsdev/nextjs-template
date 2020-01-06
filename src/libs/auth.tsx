@@ -13,10 +13,11 @@ const auth = ctx => {
     initProps.serverData = serverData;
     initProps.userInfo = userContext?.userInfo;
   } else {
-    const {
-      __NEXT_DATA__: { props: winProps },
-    }: any = window;
-    const { serverData, isAuthenticated, userInfo } = winProps;
+    const serverInitProps = JSON.parse(
+      document.getElementById('__server-init-props')?.textContent as string
+    );
+    console.log('__server-init-props', serverInitProps);
+    const { serverData, isAuthenticated, userInfo } = serverInitProps;
     initProps.isAuthenticated = isAuthenticated;
     initProps.serverData = serverData;
     initProps.userInfo = userInfo;

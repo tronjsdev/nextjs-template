@@ -15,6 +15,7 @@ const SecondaryLayout: React.FunctionComponent<Props> = ({
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
+    <h3>Secondary Layout</h3>
     {children}
   </>
 );

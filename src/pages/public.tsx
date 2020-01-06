@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { DefaultLayout } from '@layouts';
 
 // eslint-disable-next-line react/display-name
-export default props => {
+const PublicPage = props => {
   const { userInfo } = props;
   return (
     <DefaultLayout>
@@ -15,3 +15,6 @@ export default props => {
     </DefaultLayout>
   );
 };
+
+
+export default PublicPage;
